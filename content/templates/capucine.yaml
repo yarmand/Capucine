@@ -1,0 +1,35 @@
+# DEFAULT RULES :
+
+compass_enable: true
+coffeescript_enable: true
+templates_enable: true
+incloudr_enable: true
+
+# ----------------------------------------
+
+compass_images_dir: 'images'
+compass_compass_files_dir: 'sass'
+compass_css_generated_dir: 'css_generated'
+compass_line_comments: false
+compass_css_generated_style: 'compressed' # nested , expanded, compact, compressed
+compass_sass_cache: false
+compass_plugins:
+  - 'sass-capucine'
+
+compass_import_css: true
+compass_import_formats: 'css to sass'
+compass_import_css_dir: 'css/import'
+compass_import_output_dir: 'sass/converted'
+
+coffeescript_coffee_files_dir: 'coffeescript'
+coffeescript_js_generated_dir: 'js_generated'
+coffeescript_coffee_bare: true
+
+templates_erb_files_dir: 'templates'
+
+incloudr_output_dir: 'js_generated/pack'
+incloudr_files:
+  'main.js':
+    - 'js/libs/jquery.min.js'
+    - 'js_generated/app.js'
+

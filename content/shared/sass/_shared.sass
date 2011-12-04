@@ -1,0 +1,32 @@
+
+// +font-face('my_font',font-files('../fonts/my_font.ttf', truetype, '../fonts/my_font.otf', opentype), '../fonts/my_font.eot')
+
+$WIDTH_MIN: 320px
+$WIDTH_MAX: 960px
+
+$FONT_1: "Lucida Grande", "Tahoma", Arial, sans-serif
+
+$COLOR_1: #111
+$COLOR_2: #444
+
+// TAGS
+
+body
+  font: normal 12px $FONT_1
+  color: $COLOR_1
+
+h1, h2, h3, h4
+  color: $COLOR_2
+
+a
+  +pressed-effect
+
+p, b, strong, i, blockquote, cite
+  line-height: 1.5em
+
+// CLASS
+
+.wrap
+  +centerX
+  +min-max-width($WIDTH_MIN, $WIDTH_MAX)
+

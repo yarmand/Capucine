@@ -1,0 +1,28 @@
+    
+    Usage:
+
+      Configure your preferences in capucine.yaml
+
+      epycea [option]
+  
+    Options:
+
+      new (or n)          -   Create a new project
+
+      init (or i)         -   Initialize a project in current folder
+      
+      compile (or c)      -   Compile .sass, .coffee, .erb files (just once)
+                              
+      watch (or w)        -   Compile .sass, .coffee, .erb files (run the watcher).
+
+      help                -   Print this message
+
+
+    Informations:
+      
+      Github  -  https://github.com/damln
+
+      Author  -  http://dln.name
+
+      Twitter -  @damln
+

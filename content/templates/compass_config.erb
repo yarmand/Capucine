@@ -1,0 +1,15 @@
+<% if config["compass_plugins"] and config["compass_plugins"].length != 0 %>
+<% for plugin in config["compass_plugins"] %>
+require "<%= plugin %>"
+<% end %>
+<% end %>
+
+images_dir = "<%= config["compass_images_dir"] %>"
+sass_dir = "<%= config["compass_compass_files_dir"] %>"
+css_dir = "<%= config["compass_css_generated_dir"] %>"
+line_comments = <%= config["compass_line_comments"] %>
+output_style = :<%= config["compass_css_generated_style"] %>
+<% if not config["compass_sass_cache"] %>
+sass_options = {:cache => false}
+<% end %>
+
