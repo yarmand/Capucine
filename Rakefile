@@ -23,7 +23,7 @@ spec = Gem::Specification.new do |s|
   s.description = "T"
   s.summary = "."
 
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.date = "#{Time.now.strftime("%Y-%m-%d")}"
   s.platform    = Gem::Platform::RUBY
 
@@ -45,6 +45,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('packr')
   s.add_dependency('term-ansicolor')
   s.add_dependency('zip')
+  s.add_dependency('sass-capucine')
 
 end
 
