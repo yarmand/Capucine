@@ -29,7 +29,7 @@ templates_erb_files_dir: 'templates'
 
 incloudr_output_dir: 'js_generated/min'
 incloudr_files:
-  'main.js':
+  'main.min.js':
     - 'js/libs/jquery.min.js'
     - 'js_generated/app.min.js'
 

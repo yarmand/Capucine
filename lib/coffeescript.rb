@@ -32,14 +32,14 @@ module Capucine
 
         begin
           coffee_output = CoffeeScript.compile(File.read(file_coffee), :bare => bare_opt)
-          coffee_output_min << Packr.pack(coffee_output)
-
         rescue Exception => e
           coffee_output = "var message = \"CoffeeScript Error (#{relative_coffee_file.gsub(/^\//, '')}) => \";"
           coffee_output += "message += \"#{e.message}'\";"
           coffee_output += "throw message;"
           message = "#{e.message}"
         end
+        
+        coffee_output_min << Packr.pack(coffee_output)
 
         puts "[coffee] - #{message}" if message
 
