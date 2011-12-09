@@ -8,7 +8,7 @@
 
     Options:
 
-      new (or n) [name]   -   Create a new project (if not name, create the folder : )
+      new (or n) [name]   -   Create a new project (if not name, create the folder : capucine )
 
       init (or i)         -   Initialize a project in current folder (simply add a capucine.yaml file)
       

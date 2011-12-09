@@ -69,6 +69,7 @@ module Capucine
       config = File.join Capucine.settings.working_dir, '.compass.rb'
 
       command = "compass compile --quiet --config #{config} #{Capucine.settings.working_dir}"
+      # SLOW HERE :
       system(command)
 
       puts "[compass] - Compiled"
