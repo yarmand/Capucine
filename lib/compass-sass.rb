@@ -65,9 +65,7 @@ module Capucine
       self.update_config
       # self.load_my_functions
       self.import_css if Capucine.settings.config['compass_import_css']
-      
       config = File.join Capucine.settings.working_dir, '.compass.rb'
-
       command = "compass compile --quiet --config #{config} #{Capucine.settings.working_dir}"
       # SLOW HERE :
       system(command)
