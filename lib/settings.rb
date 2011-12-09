@@ -20,6 +20,7 @@ module Capucine
       self.reset_working_dir
     end
 
+    
     def get_config user_config_file = nil
       default = File.join @gem_content_dir, "templates", "#{Capucine.get_name}.yaml"
       @config = YAML::load(File.open(default)) 

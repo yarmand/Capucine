@@ -9,8 +9,7 @@ module Capucine
       cap = Capucine.new
 
       if first_arg == 'help'
-        self.help
-      
+        Capucine::Commands.help
       elsif first_arg == 'new' or first_arg == 'n'
         Capucine::Tools.new_project second_arg
       
@@ -24,12 +23,14 @@ module Capucine
         Capucine::Watchr.new second_arg
         
       else
-        self.help
+        Capucine::Commands.help
       end
     end
 
-    def help
-      puts "help"
+    def self.help
+      file_name = File.join Capucine.settings.gem_content_dir, 'templates', 'cmd_help.txt'
+
+      puts File.read(file_name)
       exit
     end
 

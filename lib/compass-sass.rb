@@ -55,6 +55,7 @@ module Capucine
       to_format = formats[2]
       
       command = "sass-convert -R --from #{from_format} --to #{to_format} #{import_dir} #{output_dir}"
+      # SLOW HERE :
       system(command)
       Capucine::Tools.archive_file import_dir
       
@@ -80,6 +81,7 @@ module Capucine
 
       command = "compass watch --config #{config_file} #{Capucine.settings.working_dir}"
       
+      # SLOW HERE :
       compass_proc = Thread.new {
         system(command)
       }

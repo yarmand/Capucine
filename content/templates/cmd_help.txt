@@ -3,13 +3,14 @@
 
       Configure your preferences in capucine.yaml
 
-      epycea [option]
+      capucine [option]
   
+
     Options:
 
-      new (or n)          -   Create a new project
+      new (or n) [name]   -   Create a new project (if not name, create the folder : )
 
-      init (or i)         -   Initialize a project in current folder
+      init (or i)         -   Initialize a project in current folder (simply add a capucine.yaml file)
       
       compile (or c)      -   Compile .sass, .coffee, .erb files (just once)
                               
@@ -20,9 +21,7 @@
 
     Informations:
       
-      Github  -  https://github.com/damln
-
+      Github  -  https://github.com/damln/Capucine
       Author  -  http://dln.name
-
       Twitter -  @damln
 

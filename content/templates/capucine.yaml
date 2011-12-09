@@ -27,9 +27,9 @@ coffeescript_coffee_bare: true
 
 templates_erb_files_dir: 'templates'
 
-incloudr_output_dir: 'js_generated/pack'
+incloudr_output_dir: 'js_generated/min'
 incloudr_files:
   'main.js':
     - 'js/libs/jquery.min.js'
-    - 'js_generated/app.js'
+    - 'js_generated/app.min.js'
 
