@@ -9,20 +9,21 @@ module Capucine
       Capucine.settings.get_config config_file
       @config = Capucine.settings.config
       
-      compass_proc = Capucine::CompassSass.proc_watch if @config['compass_enable']
+      sass_proc = Capucine::CompassSass.proc_watch if @config['sass_enable']
       coffeescript_proc = Capucine::Coffee.proc_watch if @config['coffeescript_enable']
       templates_proc = Capucine::Templates.proc_watch if @config['templates_enable']
       
-      compass_proc.join if compass_proc
+      sass_proc.join if sass_proc
       coffeescript_proc.join if coffeescript_proc
       templates_proc.join if templates_proc
     end
 
-    def self.compile config_file
-      Capucine.settings.get_config config_file
+    def self.compile config_file = nil
+      Capucine.settings.get_config
+      Capucine.settings.get_config config_file if config_file
       @config = Capucine.settings.config
       
-      Capucine::CompassSass.run_once if @config['compass_enable']
+      Capucine::CompassSass.run_once if @config['sass_enable']
       Capucine::Coffee.run_once if @config['coffeescript_enable']
       Capucine::Templates.run_once if @config['templates_enable']
     end

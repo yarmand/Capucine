@@ -19,7 +19,7 @@ PKG_FILES = FileList[
 
 packages_location = "pkg"
 
-spec = Gem::Specification.new do |s|
+$spec = Gem::Specification.new do |s|
   s.name    = gem_name
   s.description = "T"
   s.summary = "."
@@ -51,44 +51,31 @@ end
 
 # ====================================================
 # ====================================================
-Gem::PackageTask.new(spec) do |pkg|
+Gem::PackageTask.new($spec) do |pkg|
   # pkg.need_zip = true
-  # pkg.need_tar = true
+  # pkg.need_tar = t}"e
 end
 
-packages_name = "#{packages_location}/#{spec.name}-#{spec.version}.gem"
-
-# namespace 'gem' do
-#   task :install do
-#     puts 'Installing Gem.'
-#     g = Gem::Installer.new(packages_name)
-#     g.install
-#     FileUtils.rm_rf "#{File.expand_path(packages_location)}/*"
-# 
-#   end
-# end
+packages_name = "#{packages_location}/#{$spec.name}-#{$spec.version}.gem"
 
 namespace 'gem' do
   task :install do
-    puts 'Installing Gem.'
+    system("gem uninstall -a -q -x #{$spec.default_executable}")
     FileUtils.rm_rf "#{packages_location}/*"
     Gem::Installer.new(packages_name).install
+    puts "#{$spec.default_executable} Installed."
   end
 end
 
-
 task :watch do
   require 'fssm'
-  puts 'Watching changes and building gem...'
   system('rake')
-
   FSSM.monitor(Dir.pwd) do
     
     def make_gem b, r
       exclude = ['pkg/']
       exclude.each do |dir|
         if not r.match(/^#{dir}/)
-          puts "Gem build : #{r}"
           system('rake')
         end
       end

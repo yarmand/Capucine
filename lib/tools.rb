@@ -40,8 +40,7 @@ module Capucine
       content_files.each {|file| files << file}
 
       FileUtils.cp_r files, Capucine.settings.working_dir
-      self.compile if all
-
+      Capucine::Watchr.compile if all
       Capucine.settings.reset_working_dir
     end
 

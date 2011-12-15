@@ -12,16 +12,13 @@ module Capucine
         self.help
       elsif first_arg == 'new' or first_arg == 'n'
         Capucine::Tools.new_project second_arg
-      
       elsif first_arg == 'init' or first_arg == 'i'
         Capucine::Tools.init second_arg
-      
       elsif first_arg == 'compile' or first_arg == 'c'
         Capucine::Watchr.compile second_arg
       
       elsif first_arg == 'watch' or first_arg == 'w'
         Capucine::Watchr.watch second_arg
-        
       else
         self.help
       end

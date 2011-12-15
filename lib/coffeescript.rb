@@ -1,37 +1,30 @@
 module Capucine
   class Coffee
 
-    def self.run_once file = nil
-      require 'packr'
-      require 'coffee-script'
-      
-      settings = Capucine.settings
-      
-      coffee_files = file
-      coffee_files = "#{settings.working_dir}/#{settings.config['coffeescript_coffee_files_dir']}/**/**.coffee" if not file
-      
+    
+    def self.compile_dir input, output
+      coffee_files = File.join @settings.working_dir, input, "**/**.coffee"
+
       Dir.glob(coffee_files).each do |file_coffee_o|
 
         file_coffee = File.expand_path file_coffee_o
-        base_in_dir = File.join settings.working_dir, settings.config['coffeescript_coffee_files_dir']
+        base_in_dir = File.join @settings.working_dir, input
 
         relative_path = File.basename(file_coffee)
         relative_path = relative_path.gsub(/\.coffee$/, '.js')
         relative_path_min = relative_path.gsub(/\.js$/, '.min.js')
 
-        file_out = File.join settings.working_dir, settings.config['coffeescript_js_generated_dir'], relative_path
-        file_out_min = File.join settings.working_dir, settings.config['coffeescript_js_generated_dir'], relative_path_min
-
+        file_out = File.join @settings.working_dir, output, relative_path
+        file_out_min = File.join @settings.working_dir, output, relative_path_min
 
         relative_coffee_file = file_coffee.gsub(base_in_dir, '')
-
-        bare_opt = false
-        bare_opt = true if settings.config['coffeescript_coffee_bare']
+        
+        opts = @settings.config['coffeescript_options']
         
         coffee_output_min = ""
 
         begin
-          coffee_output = CoffeeScript.compile(File.read(file_coffee), :bare => bare_opt)
+          coffee_output = CoffeeScript.compile(File.read(file_coffee), opts)
         rescue Exception => e
           coffee_output = "var message = \"CoffeeScript Error (#{relative_coffee_file.gsub(/^\//, '')}) => \";"
           coffee_output += "message += \"#{e.message}'\";"
@@ -54,9 +47,20 @@ module Capucine
         f2.close
 
       end
+      
+    end
 
+    def self.run_once file = nil
+      require 'packr'
+      require 'coffee-script'
+      
+      @settings = Capucine.settings
+      @settings.config['coffeescript_dirs'].each do |k,v|
+        self.compile_dir k, v
+      end
+      
       puts "[coffee] - Compiled"
-      Capucine::Incloudr.run_once if settings.config['incloudr_enable']
+      Capucine::Incloudr.run_once if @settings.config['incloudr_enable']
     end
 
     def self.proc_watch

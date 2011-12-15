@@ -1,35 +1,27 @@
 # DEFAULT RULES :
-
-compass_enable: true
+sass_enable: true
 coffeescript_enable: true
 templates_enable: true
-incloudr_enable: true
+incloudr_enable: false
 
 # ----------------------------------------
-
-compass_images_dir: 'images'
-compass_compass_files_dir: 'sass'
-compass_css_generated_dir: 'css_generated'
-compass_line_comments: false
-compass_css_generated_style: 'compressed' # nested , expanded, compact, compressed
-compass_sass_cache: false
-compass_plugins:
+sass_images_dir: 'images'
+sass_files_dir: 'sass'
+sass_css_generated_dir: 'css_generated'
+sass_line_comments: false
+sass_css_generated_style: 'compressed' # nested , expanded, compact, compressed
+sass_cache: false
+sass_plugins:
   - 'sass-capucine'
 
-compass_import_css: true
-compass_import_formats: 'css to sass'
-compass_import_css_dir: 'css/import'
-compass_import_output_dir: 'sass/converted'
+sass_import_css: true
+sass_import_formats: 'css to sass'
+sass_import_css_dir: 'css/import'
+sass_import_output_dir: 'sass/converted'
 
-coffeescript_coffee_files_dir: 'coffeescript'
-coffeescript_js_generated_dir: 'js_generated'
-coffeescript_coffee_bare: true
+coffeescript_options: {bare: true}
+coffeescript_dirs: 
+  'coffeescript': 'js_generated'
 
 templates_erb_files_dir: 'templates'
-
-incloudr_output_dir: 'js_generated/min'
-incloudr_files:
-  'main.min.js':
-    - 'js/libs/jquery.min.js'
-    - 'js_generated/app.min.js'
 
