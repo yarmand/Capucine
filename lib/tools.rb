@@ -45,16 +45,6 @@ module Capucine
       Capucine.settings.reset_working_dir
     end
 
-    def self.compile
-      Capucine.settings.get_config
-      @config = Capucine.settings.config
-      
-      Capucine::CompassSass.run_once if @config['compass_enable']
-      Capucine::Coffee.run_once if @config['coffeescript_enable']
-      Capucine::Templates.run_once if @config['templates_enable']
-
-    end
-
     def self.render_template template_file, content = nil
       config = content
       template = ERB.new File.new(template_file).read

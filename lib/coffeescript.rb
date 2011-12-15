@@ -1,8 +1,8 @@
 module Capucine
   class Coffee
-    require 'packr'
 
     def self.run_once file = nil
+      require 'packr'
       require 'coffee-script'
       
       settings = Capucine.settings

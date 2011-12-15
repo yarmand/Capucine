@@ -5,8 +5,8 @@ module Capucine
       return if not plugins
 
       plugins.each do |plugin|
-        require 'rubygems'
-        require 'sass'
+        # require 'rubygems'
+        # require 'sass'
 
         begin 
           require "#{plugin}"
@@ -20,11 +20,8 @@ module Capucine
       settings = Capucine.settings
       template_file = File.join settings.gem_content_dir, 'templates', 'compass_config.erb'
       output_file = File.join settings.working_dir, '.compass.rb'
-      
       config_ = settings.config
-
       result = Capucine::Tools.render_template template_file, config_
-      
       f = File.open(output_file, 'w')
       f.write(result)
       f.close
@@ -55,7 +52,6 @@ module Capucine
       to_format = formats[2]
       
       command = "sass-convert -R --from #{from_format} --to #{to_format} #{import_dir} #{output_dir}"
-      # SLOW HERE :
       system(command)
       Capucine::Tools.archive_file import_dir
       
@@ -67,26 +63,33 @@ module Capucine
       self.import_css if Capucine.settings.config['compass_import_css']
       config = File.join Capucine.settings.working_dir, '.compass.rb'
       command = "compass compile --quiet --config #{config} #{Capucine.settings.working_dir}"
-      # SLOW HERE :
       system(command)
-
       puts "[compass] - Compiled"
+    end
+
+    def self.export_path
+      require 'compass'
+      require 'rubygems'
+      path_compass = Gem.loaded_specs['compass'].full_gem_path
+      ENV['PATH'] = "#{path_compass}:#{Capucine.settings.gem_dir}:#{ENV['PATH']}"
     end
 
     def self.proc_watch
       self.update_config
-
       config_file = File.join Capucine.settings.working_dir, '.compass.rb'
-
-      command = "compass watch --config #{config_file} #{Capucine.settings.working_dir}"
-      
-      # SLOW HERE :
-      compass_proc = Thread.new {
-        system(command)
+      ENV['BUNDLE_GEMFILE'] = File.join Capucine.settings.gem_dir, 'lib', 'Gemfile'
+      compass_args = ['watch', '--config', config_file, Capucine.settings.working_dir]
+      proc_watch = Thread.new {
+        self.exec_compass compass_args
       }
+      return proc_watch
+    end
 
-      return compass_proc
 
+    def self.exec_compass compass_args
+      require 'compass'
+      require 'compass/exec'
+      Compass::Exec::SubCommandUI.new(compass_args).run!
     end
 
   end

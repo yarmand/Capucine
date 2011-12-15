@@ -25,7 +25,6 @@ module Capucine
       FileUtils.mkdir_p out if not File.exist?(out)
       
       content = ""
-      # content_min = ""
 
       files.each do |js_file|
         extended = File.join s.working_dir, js_file
@@ -36,12 +35,6 @@ module Capucine
       f.write('')
       f.write(content)
       f.close
-
-      # f2 = File.open(output_file_min, 'w')
-      # f2.write('')
-      # f2.write(content_min)
-      # f2.close
-
     end
 
     # def self.lib_root

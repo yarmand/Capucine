@@ -1,5 +1,5 @@
 gem 'sass'
-gem 'compass'
+gem 'compass', '0.12.alpha.2'
 gem 'coffee-script'
 gem 'sass-capucine'
 gem 'fssm'

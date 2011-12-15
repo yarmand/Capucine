@@ -13,26 +13,27 @@ gem_name = Capucine.get_name
 
 PKG_FILES = FileList[
   "content/**/**",
-  "lib/**/**.rb",
+  "lib/**/**",
   "bin/*",
 ]
+
 packages_location = "pkg"
 
 spec = Gem::Specification.new do |s|
   s.name    = gem_name
   s.description = "T"
   s.summary = "."
-
+  
   s.version = "0.0.2"
   s.date = "#{Time.now.strftime("%Y-%m-%d")}"
   s.platform    = Gem::Platform::RUBY
-
+  
   s.author = "Damian Le Nouaille"
   s.homepage = "http://dln.name"
   s.email = "dam@dln.name"
-
+  
   s.files = PKG_FILES.to_a
-
+  
   s.require_path = "lib"
   s.bindir = "bin"
   s.executables = ["#{s.name}"]
@@ -46,7 +47,6 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('term-ansicolor')
   s.add_dependency('zip')
   s.add_dependency('sass-capucine')
-
 end
 
 # ====================================================
