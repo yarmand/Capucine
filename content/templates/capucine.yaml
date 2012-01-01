@@ -1,27 +1,28 @@
-# DEFAULT RULES :
 sass_enable: true
 coffeescript_enable: true
 templates_enable: true
-incloudr_enable: false
 
 # ----------------------------------------
 sass_images_dir: 'images'
 sass_files_dir: 'sass'
-sass_css_generated_dir: 'css_generated'
+sass_output_dir: 'css_generated'
 sass_line_comments: false
 sass_css_generated_style: 'compressed' # nested , expanded, compact, compressed
-sass_cache: false
-sass_plugins:
+sass_options: {:cache: false}
+compass_plugins:
   - 'sass-capucine'
 
-sass_import_css: true
+sass_import_css: false
 sass_import_formats: 'css to sass'
 sass_import_css_dir: 'css/import'
 sass_import_output_dir: 'sass/converted'
 
 coffeescript_options: {bare: true}
-coffeescript_dirs: 
-  'coffeescript': 'js_generated'
+coffeescript_files_dir: 'coffeescript'
+coffeescript_output_dir: 'js_generated'
 
 templates_erb_files_dir: 'templates'
 
+
+# DOCUMENTATION :
+# http:// capucine.dln.name

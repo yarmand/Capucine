@@ -17,5 +17,4 @@ fallback_load_path(File.join(File.dirname(__FILE__), '..', 'lib')) do
   require 'capucine.rb'
 end
 
-capucine = Capucine.new
-command = Capucine::Commands.new ARGV
+Capucine::Commands.new ARGV

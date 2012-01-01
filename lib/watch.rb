@@ -4,9 +4,15 @@ module Capucine
     require 'coffeescript.rb'
     require "templates.rb"
 
-    def self.watch config_file
-      self.compile
-      Capucine.settings.get_config config_file
+    def self.watch config_file = nil
+      self.compile config_file
+      
+      if config_file
+        Capucine.settings.get_config config_file
+      else
+        Capucine.settings.get_config
+      end
+      
       @config = Capucine.settings.config
       
       sass_proc = Capucine::CompassSass.proc_watch if @config['sass_enable']
@@ -19,8 +25,12 @@ module Capucine
     end
 
     def self.compile config_file = nil
-      Capucine.settings.get_config
-      Capucine.settings.get_config config_file if config_file
+      if config_file
+        Capucine.settings.get_config config_file 
+      else
+        Capucine.settings.get_config
+      end
+
       @config = Capucine.settings.config
       
       Capucine::CompassSass.run_once if @config['sass_enable']

@@ -78,8 +78,10 @@ module Capucine
       FileUtils.mv path, new_dir_name
 
     end
+    
 
-    def clean_name name
+
+    def self.clean_name name
       require_relative 'extend_string'
       name.removeaccents
       name.urlize({:downcase => true, :convert_spaces => true})

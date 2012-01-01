@@ -1,27 +1,44 @@
     
     Usage:
 
-      Configure your preferences in capucine.yaml
+        Configure your preferences in capucine.yaml
 
-      capucine [option]
+        $ capucine [option]
   
-
     Options:
 
-      new (or n) [name]   -   Create a new project (if not name, create the folder : capucine )
+        new  [name]                   -    Create a new project 
+                                           If not name specified, this will create the folder : capucine/
 
-      init (or i)         -   Initialize a project in current folder (simply add a capucine.yaml file)
+        init                          -    Initialize a project in current folder (simply add a capucine.yaml file)
       
-      compile (or c)      -   Compile .sass, .coffee, .erb files (just once)
+        compile [path/to/config]      -    Compile .sass, .coffee, .erb files (just once)
                               
-      watch (or w)        -   Compile .sass, .coffee, .erb files (run the watcher).
+        watch [path/to/config]        -    Compile .sass, .coffee, .erb files (run the watcher).
 
-      help                -   Print this message
+        help                          -    Print this message
 
+    Shortcuts:
+
+        n = new
+
+        i = init
+
+        c = compile
+
+        w = watch
+
+        h = help
 
     Informations:
       
-      Github  -  https://github.com/damln/Capucine
-      Author  -  http://dln.name
-      Twitter -  @damln
+        Github         -  https://github.com/damln/Capucine
+        Documentation  -  http://capucine.dln.name
+        Twitter        -  @wearecapucine ( http://twitter.com/wearecapucine )
+      
+    Author:
 
+        Name           - Damian Le Nouaillle
+        Site           - http://dln.name
+        Twitter        - @damln ( http://twitter.com/damln )
+      

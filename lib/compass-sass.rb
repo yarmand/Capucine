@@ -1,18 +1,15 @@
 module Capucine
   class CompassSass
 
-    def self.update_plugins force = false
-      plugins = Capucine.settings.config['sass_plugins']
+    def self.update_plugins
+      plugins = Capucine.settings.config['compass_plugins']
       return if not plugins
 
       plugins.each do |plugin|
-        require 'rubygems'
-        # require 'sass'
-
         begin 
           require "#{plugin}"
         rescue LoadError
-          system("gem install #{plugin} --no-ri --no-rdoc") if force
+          system("gem install #{plugin} --no-ri --no-rdoc")
         end
       end
     end
@@ -22,12 +19,14 @@ module Capucine
       template_file = File.join settings.gem_content_dir, 'templates', 'compass_config.erb'
       output_file = File.join settings.working_dir, '.compass.rb'
       config_ = settings.config
+      
       result = Capucine::Tools.render_template template_file, config_
+      
       f = File.open(output_file, 'w')
       f.write(result)
       f.close
       
-      self.update_plugins force = true
+      self.update_plugins
     end
     
     # def self.load_my_functions
@@ -78,14 +77,12 @@ module Capucine
     def self.proc_watch
       self.update_config
       config_file = File.join Capucine.settings.working_dir, '.compass.rb'
-      ENV['BUNDLE_GEMFILE'] = File.join Capucine.settings.gem_dir, 'lib', 'Gemfile'
       compass_args = ['watch', '--config', config_file, Capucine.settings.working_dir]
       proc_watch = Thread.new {
         self.exec_compass compass_args
       }
       return proc_watch
     end
-
 
     def self.exec_compass compass_args
       require 'compass'

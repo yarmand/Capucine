@@ -24,7 +24,6 @@ module Capucine
     def get_config user_config_file = nil
       default = File.join @gem_content_dir, "templates", "#{Capucine.get_name}.yaml"
       @config = YAML::load(File.open(default)) 
-      # Load user config :
 
       from_user = File.join @working_dir, "#{Capucine.get_name}.yaml"
       from_user = File.expand_path user_config_file if user_config_file
@@ -35,18 +34,34 @@ module Capucine
       additional = YAML::load(File.open(from_user))
 
       if additional
-        # Overload default.yaml :
         additional.each do |k, v|
           @config[k] = nil
           @config[k] = v
         end
       end
-    end    
-   
+      #self.test_config
+    end  
+
+    def test_config
+      # TO DO :
+      conf_dirs = [] 
+      dirs = []
+      for conf in conf_dirs
+        conf = @config[conf]
+        dirs.push File.join(@working_dir,conf)
+      end
+      
+      for dir in dirs
+        unless File.directory?(dir)
+          puts "[error] #{dir} - Does not exist."
+          exit
+        end
+      end
+    end 
+
     def reset_working_dir
       @working_dir = File.expand_path Dir.pwd
     end
-
   end
 end
 
