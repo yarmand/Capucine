@@ -15,6 +15,6 @@ end
 
 fallback_load_path(File.join(File.dirname(__FILE__), '..', 'lib')) do
   require 'capucine.rb'
+  require 'commands.rb'
 end
-
 Capucine::Commands.new ARGV

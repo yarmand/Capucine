@@ -7,8 +7,8 @@ sass_images_dir: 'images'
 sass_files_dir: 'sass'
 sass_output_dir: 'css_generated'
 sass_line_comments: false
-sass_css_generated_style: 'compressed' # nested , expanded, compact, compressed
-sass_options: {:cache: false}
+sass_css_generated_style: 'compressed'
+sass_options: {cache: false}
 compass_plugins:
   - 'sass-capucine'
 

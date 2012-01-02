@@ -2,14 +2,10 @@
 # require 'psych'
 # subjs, revojs, jeanjs, wingjs,  
 
-
 require 'rubygems'
 require 'rubygems/package_task'
 require 'rubygems/installer'
 require 'fileutils'
-
-require './lib/capucine.rb'
-gem_name = Capucine.get_name
 
 PKG_FILES = FileList[
   "VERSION",
@@ -21,7 +17,7 @@ PKG_FILES = FileList[
 packages_location = "pkg"
 
 $spec = Gem::Specification.new do |s|
-  s.name    = gem_name
+  s.name = 'capucine'
   s.description = "Capucine, the missing tool for frontend developers."
   s.summary = "."
   
@@ -40,6 +36,7 @@ $spec = Gem::Specification.new do |s|
   s.executables = ["#{s.name}"]
   s.default_executable = "#{s.name}"
   
+  # s.add_dependency('rb-fsevent')
   s.add_dependency('fssm')
   s.add_dependency('compass')
   s.add_dependency('coffee-script')
@@ -99,5 +96,3 @@ end
 
 
 task :default => [:package, 'gem:install']
-
-# vim: syntax=Ruby

@@ -11,20 +11,20 @@ module Capucine
     
     def initialize
       @current_dir = File.expand_path Dir.pwd
-      @project_name = Capucine.get_name
+      @project_name = 'capucine'
       @is_usable = false
       @config = nil
-      @gem_dir = Gem.loaded_specs[Capucine.get_name].full_gem_path
+      @gem_dir = Gem.loaded_specs[@project_name].full_gem_path
       @gem_content_dir = File.join @gem_dir, 'content'
 
       self.reset_working_dir
     end
 
     def get_config user_config_file = nil
-      default = File.join @gem_content_dir, "templates", "#{Capucine.get_name}.yaml"
+      default = File.join @gem_content_dir, "templates", "#{@project_name}.yaml"
       @config = YAML::load(File.open(default)) 
 
-      from_user = File.join @working_dir, "#{Capucine.get_name}.yaml"
+      from_user = File.join @working_dir, "#{@project_name}.yaml"
       from_user = File.expand_path user_config_file if user_config_file
       
       raise NoUserConfigFile, caller if not File.exist? from_user

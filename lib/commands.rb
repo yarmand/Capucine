@@ -1,7 +1,8 @@
 module Capucine
   class Commands
 
-    require 'watch'
+    require 'tools.rb'
+    require 'watch.rb'
 
     def initialize args
       first_arg = args[0]
