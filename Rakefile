@@ -12,6 +12,7 @@ require './lib/capucine.rb'
 gem_name = Capucine.get_name
 
 PKG_FILES = FileList[
+  "VERSION",
   "content/**/**",
   "lib/**/**",
   "bin/*",
@@ -24,7 +25,7 @@ $spec = Gem::Specification.new do |s|
   s.description = "Capucine, the missing tool for frontend developers."
   s.summary = "."
   
-  s.version = "0.0.3"
+  s.version = File.read('VERSION')
   s.date = "#{Time.now.strftime("%Y-%m-%d")}"
   s.platform    = Gem::Platform::RUBY
   

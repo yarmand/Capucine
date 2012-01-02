@@ -24,8 +24,10 @@ module Capucine
     end
 
     def self.help
-      file_name = File.join Capucine.settings.gem_content_dir, 'templates', 'cmd_help.txt'
-      puts File.read(file_name)
+      file_name = File.join Capucine.settings.gem_content_dir, 'templates', 'cmd_help.erb'
+      version = File.read(File.join(Capucine.settings.gem_dir, 'VERSION'))
+      render = Capucine::Tools.render_template file_name, version
+      puts render
       exit
     end
 
