@@ -93,15 +93,19 @@ module Capucine
             
             file_name = File.expand_path File.join(b, r)
             folder_name = File.dirname file_name
-            js_file = File.join js_generated_dir, r.gsub('.coffee', '.js')
+            js_files = [
+              File.join(js_generated_dir, r.gsub('.coffee', '.js')),
+              File.join(js_generated_dir, r.gsub('.coffee', '.min.js')),
+            ]
 
             if Dir["#{folder_name}/*"].empty? and folder_name != js_generated_dir
               # delete full dir
-              to_delete = File.expand_path(File.dirname(js_file))
+              to_delete = File.expand_path(File.dirname(js_files[0]))
               FileUtils.rm_r to_delete
             else
-              # delete one file
-              File.delete(js_file) if File.exist?(js_file)
+              js_files.each do |file|
+                File.delete(file) if File.exist?(file)
+              end
             end
 
           end

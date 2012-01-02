@@ -21,15 +21,15 @@ packages_location = "pkg"
 
 $spec = Gem::Specification.new do |s|
   s.name    = gem_name
-  s.description = "T"
+  s.description = "Capucine, the missing tool for frontend developers."
   s.summary = "."
   
-  s.version = "0.0.2"
+  s.version = "0.0.3"
   s.date = "#{Time.now.strftime("%Y-%m-%d")}"
   s.platform    = Gem::Platform::RUBY
   
   s.author = "Damian Le Nouaille"
-  s.homepage = "http://dln.name"
+  s.homepage = "http://capucine.dln.name"
   s.email = "dam@dln.name"
   
   s.files = PKG_FILES.to_a
