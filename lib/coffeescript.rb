@@ -18,9 +18,11 @@ module Capucine
         file_coffee = File.expand_path file_coffee_o
         base_in_dir = File.join settings.working_dir, input
 
-        relative_path = File.basename(file_coffee)
+        relative_path = file_coffee.gsub(File.join(Capucine.settings.working_dir, Capucine.settings.config['coffeescript_files_dir'] ),'')
         relative_path = relative_path.gsub(/\.coffee$/, '.js')
         relative_path_min = relative_path.gsub(/\.js$/, '.min.js')
+
+        # exit
 
         file_out = File.join settings.working_dir, output, relative_path
         file_out_min = File.join settings.working_dir, output, relative_path_min
@@ -28,7 +30,8 @@ module Capucine
         relative_coffee_file = file_coffee.gsub(base_in_dir, '')
         
         opts = settings.config['coffeescript_options']
-        
+        opts = {:bare => true}
+
         coffee_output_min = ""
         
         error = false
@@ -68,7 +71,6 @@ module Capucine
       end
       
       puts "[coffee] - Compiled"
-      # Capucine::Incloudr.run_once if settings.config['incloudr_enable']
     end
     
     def self.proc_watch
@@ -81,12 +83,12 @@ module Capucine
         FSSM.monitor(files_to_lookat, :directories => true) do
           update do |b, r|
             file = File.join b, r
-            Capucine::Coffee.run_once file  if File.extname(r) == '.coffee'
+            Capucine::Coffee.run_once file if File.extname(r) == '.coffee'
           end
 
           create do |b, r|
             file = File.join b, r
-            Capucine::Coffee.run_once file  if File.extname(r) == '.coffee'
+            Capucine::Coffee.run_once file if File.extname(r) == '.coffee'
           end
 
           delete do |b, r|
