@@ -65,7 +65,12 @@ module Capucine
       settings = Capucine.settings
 
       unless file
+        files = Dir.glob(File.join settings.working_dir, settings.config['coffeescript_output_dir'], '*')
+        FileUtils.rm_r files
+        
         self.compile_dir settings.config['coffeescript_files_dir'], settings.config['coffeescript_output_dir']
+        
+
       else
         self.compile_dir file, settings.config['coffeescript_output_dir']
       end

@@ -1,5 +1,5 @@
-<% if config["compass_plugins"] and config["compass_plugins"].length != 0 %>
-<% for plugin in config["compass_plugins"] %>
+<% if config["compass_plugins_list"] and config["compass_plugins_list"].length != 0 %>
+<% for plugin in config["compass_plugins_list"] %>
 require "<%= plugin %>"
 <% end %>
 <% end %>

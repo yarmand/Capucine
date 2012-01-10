@@ -1,11 +1,9 @@
 module Capucine
   class CompassSass
 
-    def self.update_plugins
-      plugins = Capucine.settings.config['compass_plugins']
-      return if not plugins
-
-      plugins.each do |plugin|
+    def self.update_plugins gems
+      return if not gems
+      gems.each do |plugin|
         begin 
           require "#{plugin}"
         rescue LoadError
@@ -18,15 +16,32 @@ module Capucine
       settings = Capucine.settings
       template_file = File.join settings.gem_content_dir, 'templates', 'compass_config.erb'
       output_file = File.join settings.working_dir, '.compass.rb'
-      config_ = settings.config
       
+      settings.config['compass_plugins_list'] = []
+      plugins_gems = []
+
+      plugins = settings.config['compass_plugins']
+
+      if plugins.size > 0
+        plugins.each do |key, value|
+          settings.config['compass_plugins_list'].push key
+          
+          if value and value.length > 0
+            plugins_gems.push value
+          else
+            plugins_gems.push key
+          end
+          
+        end
+      end
+      config_ = settings.config
       result = Capucine::Tools.render_template template_file, config_
       
       f = File.open(output_file, 'w')
       f.write(result)
       f.close
       
-      self.update_plugins
+      self.update_plugins plugins_gems
     end
     
     # def self.load_my_functions

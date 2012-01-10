@@ -10,7 +10,8 @@ sass_line_comments: false
 sass_css_generated_style: 'compressed'
 sass_options: {cache: false}
 compass_plugins:
-  - 'sass-capucine'
+  sass-capucine:
+  # twitter-bootstrap: twitter_bootstrap
 
 sass_import_css: false
 sass_import_formats: 'css to sass'
@@ -22,7 +23,6 @@ coffeescript_files_dir: 'coffeescript'
 coffeescript_output_dir: 'js_generated'
 
 templates_erb_files_dir: 'templates'
-
 
 # DOCUMENTATION :
 # http:// capucine.dln.name
