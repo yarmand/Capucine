@@ -12,6 +12,7 @@ module Capucine
       end
     end
 
+
     def self.update_config
       settings = Capucine.settings
       template_file = File.join settings.gem_content_dir, 'templates', 'compass_config.erb'
