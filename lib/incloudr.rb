@@ -8,7 +8,7 @@ module Capucine
     def self.run_once
       files = Capucine.settings.config['incloudr_files']
       return if files.length == 0
-      
+
       files.each do |base, files|
         self.pack base, files
       end
@@ -18,19 +18,19 @@ module Capucine
     def self.pack base = nil, files = []
       s = Capucine.settings
       out = File.join s.working_dir, s.config['incloudr_output_dir']
-      
+
       output_file = File.join out, base
       output_file_min = File.join out, base.gsub('.js', '.min.js')
-      
+
       FileUtils.mkdir_p out if not File.exist?(out)
-      
+
       content = ""
 
       files.each do |js_file|
         extended = File.join s.working_dir, js_file
         content << File.read(extended) if File.exist?(extended)
       end
-      
+
       f = File.open(output_file, 'w')
       f.write('')
       f.write(content)
@@ -47,7 +47,7 @@ module Capucine
     #   output_file = "#{file_name}.js"
     #   output_file_min = "#{file_name}.min.js"
     # end
-    
+
     # def self.get_lib lib
     #   lib_name = lib[0]
     #   lib_version = lib[1]

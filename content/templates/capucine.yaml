@@ -9,6 +9,8 @@ sass_output_dir: 'css_generated'
 sass_line_comments: false
 sass_css_generated_style: 'compressed'
 sass_options: {cache: false}
+# compass_config:
+#   '': ''
 compass_plugins:
   sass-capucine:
   # twitter-bootstrap: twitter_bootstrap

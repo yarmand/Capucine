@@ -1,6 +1,6 @@
 # -*- ruby -*-
 # require 'psych'
-# subjs, revojs, jeanjs, wingjs,  
+# subjs, revojs, jeanjs, wingjs,
 
 require 'rubygems'
 require 'rubygems/package_task'
@@ -20,30 +20,30 @@ $spec = Gem::Specification.new do |s|
   s.name = 'capucine'
   s.description = "Capucine, the missing tool for frontend developers."
   s.summary = "."
-  
+
   s.version = File.read('VERSION')
   s.date = "#{Time.now.strftime("%Y-%m-%d")}"
   s.platform    = Gem::Platform::RUBY
-  
+
   s.author = "Damian Le Nouaille"
   s.homepage = "http://capucine.dln.name"
   s.email = "dam@dln.name"
-  
+
   s.files = PKG_FILES.to_a
-  
+
   s.require_path = "lib"
   s.bindir = "bin"
   s.executables = ["#{s.name}"]
   s.default_executable = "#{s.name}"
-  
+
   # s.add_dependency('rb-fsevent')
   s.add_dependency('fssm')
-  s.add_dependency('compass')
-  s.add_dependency('coffee-script')
+  s.add_dependency('compass', '0.12.rc.0')
+  s.add_dependency('coffee-script', '2.2.0')
   s.add_dependency('uglifier')
   s.add_dependency('packr')
-  s.add_dependency('term-ansicolor')
-  s.add_dependency('zip')
+  # s.add_dependency('term-ansicolor')
+  # s.add_dependency('zip')
   s.add_dependency('sass-capucine')
 end
 
@@ -69,7 +69,7 @@ task :watch do
   require 'fssm'
   system('rake')
   FSSM.monitor(Dir.pwd) do
-    
+
     def make_gem b, r
       exclude = ['pkg/']
       exclude.each do |dir|
