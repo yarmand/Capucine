@@ -19,6 +19,10 @@ module Capucine
         Capucine::Watchr.compile second_arg
       elsif first_arg == 'watch' or first_arg == 'w'
         Capucine::Watchr.watch second_arg
+      elsif first_arg == 'clean'
+        Capucine::Tools.clean
+      elsif first_arg == 'update' or first_arg == 'u'
+        system('gem install capucine')
       else
         Capucine::Commands.help
       end

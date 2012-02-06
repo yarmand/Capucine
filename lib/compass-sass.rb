@@ -4,7 +4,7 @@ module Capucine
     def self.update_plugins gems
       return if not gems
       gems.each do |plugin|
-        begin 
+        begin
           require "#{plugin}"
         rescue LoadError
           system("gem install #{plugin} --no-ri --no-rdoc")
@@ -12,12 +12,11 @@ module Capucine
       end
     end
 
-
     def self.update_config
       settings = Capucine.settings
       template_file = File.join settings.gem_content_dir, 'templates', 'compass_config.erb'
       output_file = File.join settings.working_dir, '.compass.rb'
-      
+
       settings.config['compass_plugins_list'] = []
       plugins_gems = []
 
@@ -26,32 +25,32 @@ module Capucine
       if plugins.size > 0
         plugins.each do |key, value|
           settings.config['compass_plugins_list'].push key
-          
+
           if value and value.length > 0
             plugins_gems.push value
           else
             plugins_gems.push key
           end
-          
+
         end
       end
       config_ = settings.config
       result = Capucine::Tools.render_template template_file, config_
-      
+
       f = File.open(output_file, 'w')
       f.write(result)
       f.close
-      
+
       self.update_plugins plugins_gems
     end
-    
+
     # def self.load_my_functions
     #   rb_files = Dir.glob "#{Capucine.settings.working_dir}/#{Capucine.settings.config['compass_compass_files_dir']}/**/**.rb"
-    #   
+    #
     #   rb_files.each do |file|
     #     require "#{file}"
     #   end
-    #   
+    #
     # end
 
     def self.import_css
@@ -62,15 +61,15 @@ module Capucine
 
       Dir.mkdir(import_dir) if not File.directory?(import_dir)
       Dir.mkdir(output_dir) if not File.directory?(output_dir)
-      
+
       formats = s.config['sass_import_formats'].split
       from_format = formats[0]
       to_format = formats[2]
-      
+
       command = "sass-convert -R --from #{from_format} --to #{to_format} #{import_dir} #{output_dir}"
       system(command)
       Capucine::Tools.archive_file import_dir
-      
+
     end
 
     def self.run_once
@@ -107,5 +106,5 @@ module Capucine
     end
 
   end
-  
+
 end

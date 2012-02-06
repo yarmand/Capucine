@@ -7,7 +7,7 @@ sass_images_dir: 'images'
 sass_files_dir: 'sass'
 sass_output_dir: 'css_generated'
 sass_line_comments: false
-sass_css_generated_style: 'compressed'
+sass_css_generated_style: 'expanded' # compact | expanded | compressed
 sass_options: {cache: false}
 # compass_config:
 #   '': ''
