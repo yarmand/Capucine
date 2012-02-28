@@ -66,7 +66,7 @@ module Capucine
       from_format = formats[0]
       to_format = formats[2]
 
-      command = "sass-convert -R --from #{from_format} --to #{to_format} #{import_dir} #{output_dir}"
+      command = "sass-convert -R --from #{from_format} --to #{to_format} \"#{import_dir}\" \"#{output_dir}\""
       system(command)
       Capucine::Tools.archive_file import_dir
 
@@ -77,7 +77,7 @@ module Capucine
       # self.load_my_functions
       self.import_css if Capucine.settings.config['sass_import_css']
       config = File.join Capucine.settings.working_dir, '.compass.rb'
-      command = "compass compile --quiet --config #{config} #{Capucine.settings.working_dir}"
+      command = "compass compile --quiet --config \"#{config}\" \"#{Capucine.settings.working_dir}\""
       system(command)
       puts "[compass] - Compiled"
     end
