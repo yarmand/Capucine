@@ -9,6 +9,7 @@ This allow you to use CoffeeScript and Compass everywere.
 
 Installation
 ===
+Require Ruby 1.9+
 
     gem install capucine
 
@@ -31,9 +32,13 @@ Launch the watcher, this will compile everything on file changes :
 
     capucine watch
 
+Update the Capucine gem :
+
+    capucine update
+
 Help :
-    
-    capucine help 
+
+    capucine help
 
 or
 
