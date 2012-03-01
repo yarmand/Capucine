@@ -60,7 +60,7 @@ dwsync.xml
 *.sql
 *.sqlite
 
-# XCODE : 
+# XCODE :
 *~.nib
 *.pbxuser
 *.perspective

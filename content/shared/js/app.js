@@ -4,4 +4,3 @@ window.AppJS = {
 
   }
 }
-// jQuery(document).ready(function() {window.AppJS.initialize();});

@@ -82,12 +82,12 @@ module Capucine
       puts "[compass] - Compiled"
     end
 
-    def self.export_path
-      require 'compass'
-      require 'rubygems'
-      path_compass = Gem.loaded_specs['compass'].full_gem_path
-      ENV['PATH'] = "#{path_compass}:#{Capucine.settings.gem_dir}:#{ENV['PATH']}"
-    end
+    # def self.export_path
+    #   require 'compass'
+    #   require 'rubygems'
+    #   path_compass = Gem.loaded_specs['compass'].full_gem_path
+    #   ENV['PATH'] = "#{path_compass}:#{Capucine.settings.gem_dir}:#{ENV['PATH']}"
+    # end
 
     def self.proc_watch
       self.update_config

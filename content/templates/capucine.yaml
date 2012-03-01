@@ -1,5 +1,6 @@
 sass_enable: true
 coffeescript_enable: true
+incloudr_enable: true
 templates_enable: true
 
 # ----------------------------------------
@@ -13,6 +14,10 @@ sass_options: {cache: false}
 #   '': ''
 compass_plugins:
   sass-capucine:
+  # gem-name: plugin-name
+  # OR simply
+  # plugin-name:      if gem-anem = plugin-name
+
   # twitter-bootstrap: twitter_bootstrap
 
 sass_import_css: false
@@ -20,9 +25,13 @@ sass_import_formats: 'css to sass'
 sass_import_css_dir: 'css/import'
 sass_import_output_dir: 'sass/converted'
 
-coffeescript_options: {bare: true}
+coffeescript_bare: false
 coffeescript_files_dir: 'coffeescript'
 coffeescript_output_dir: 'js_generated'
+
+incloudr_output_dir: 'js_generated/modules'
+incloudr_libs:
+  - backbone
 
 templates_erb_files_dir: 'templates'
 

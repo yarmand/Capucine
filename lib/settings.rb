@@ -46,22 +46,21 @@ module Capucine
       #self.test_config
     end
 
-    def test_config
-      # TO DO :
-      conf_dirs = []
-      dirs = []
-      for conf in conf_dirs
-        conf = @config[conf]
-        dirs.push File.join(@working_dir,conf)
-      end
+    # def test_config
+    #   conf_dirs = []
+    #   dirs = []
+    #   for conf in conf_dirs
+    #     conf = @config[conf]
+    #     dirs.push File.join(@working_dir,conf)
+    #   end
 
-      for dir in dirs
-        unless File.directory?(dir)
-          puts "[error] #{dir} - Does not exist."
-          exit
-        end
-      end
-    end
+    #   for dir in dirs
+    #     unless File.directory?(dir)
+    #       puts "[error] #{dir} - Does not exist."
+    #       exit
+    #     end
+    #   end
+    # end
 
     def reset_working_dir
       if @external_config

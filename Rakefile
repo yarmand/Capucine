@@ -1,98 +1,53 @@
-# -*- ruby -*-
-# require 'psych'
-# subjs, revojs, jeanjs, wingjs,
+# encoding: utf-8
 
 require 'rubygems'
-require 'rubygems/package_task'
-require 'rubygems/installer'
-require 'fileutils'
-
-PKG_FILES = FileList[
-  "VERSION",
-  "content/**/**",
-  "lib/**/**",
-  "bin/*",
-]
-
-packages_location = "pkg"
-
-$spec = Gem::Specification.new do |s|
-  s.name = 'capucine'
-  s.description = "Capucine, the missing tool for frontend developers."
-  s.summary = "."
-
-  s.version = File.read('VERSION')
-  s.date = "#{Time.now.strftime("%Y-%m-%d")}"
-  s.platform    = Gem::Platform::RUBY
-
-  s.author = "Damian Le Nouaille"
-  s.homepage = "http://capucine.dln.name"
-  s.email = "dam@dln.name"
-
-  s.files = PKG_FILES.to_a
-
-  s.require_path = "lib"
-  s.bindir = "bin"
-  s.executables = ["#{s.name}"]
-  s.default_executable = "#{s.name}"
-
-  # s.add_dependency('rb-fsevent')
-  s.add_dependency('fssm')
-  s.add_dependency('compass', '0.12.rc.0')
-  s.add_dependency('coffee-script', '2.2.0')
-  s.add_dependency('uglifier')
-  s.add_dependency('packr')
-  # s.add_dependency('term-ansicolor')
-  # s.add_dependency('zip')
-  s.add_dependency('sass-capucine')
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
 end
+require 'rake'
 
-# ====================================================
-# ====================================================
-Gem::PackageTask.new($spec) do |pkg|
-  # pkg.need_zip = true
-  # pkg.need_tar = t}"e
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "capucine"
+  gem.homepage = "http://capucine.dln.name"
+  gem.license = "MIT"
+  gem.summary = %Q{Tools for frontend developers. Use CoffeeScript and Compass everywhere.}
+  gem.description = %Q{longer description of your gem}
+  gem.email = "dam@dln.name"
+  gem.authors = ["Damian Le Nouaille"]
+  # dependencies defined in Gemfile
 end
+Jeweler::RubygemsDotOrgTasks.new
 
-packages_name = "#{packages_location}/#{$spec.name}-#{$spec.version}.gem"
+# require 'rake/testtask'
+# Rake::TestTask.new(:test) do |test|
+#   test.libs << 'lib' << 'test'
+#   test.pattern = 'test/**/test_*.rb'
+#   test.verbose = true
+# end
 
-namespace 'gem' do
-  task :install do
-    system("gem uninstall -a -q -x #{$spec.default_executable}")
-    FileUtils.rm_rf "#{packages_location}/*"
-    Gem::Installer.new(packages_name).install
-    puts "#{$spec.default_executable} Installed."
-  end
-end
+# require 'rcov/rcovtask'
+# Rcov::RcovTask.new do |test|
+#   test.libs << 'test'
+#   test.pattern = 'test/**/test_*.rb'
+#   test.verbose = true
+#   test.rcov_opts << '--exclude "gems/*"'
+# end
 
-task :watch do
-  require 'fssm'
-  system('rake')
-  FSSM.monitor(Dir.pwd) do
+task :default => :test
 
-    def make_gem b, r
-      exclude = ['pkg/']
-      exclude.each do |dir|
-        if not r.match(/^#{dir}/)
-          system('rake')
-        end
-      end
-    end
+# require 'rdoc/task'
+# Rake::RDocTask.new do |rdoc|
+#   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-    update do |b, r|
-      make_gem b, r
-    end
-
-    create do |b, r|
-      make_gem b, r
-    end
-
-    delete do |b, r|
-      make_gem b, r
-    end
-  end
-
-end
-
-
-task :default => [:package, 'gem:install']
+#   rdoc.rdoc_dir = 'rdoc'
+#   rdoc.title = "capucine-gem #{version}"
+#   rdoc.rdoc_files.include('README*')
+#   rdoc.rdoc_files.include('lib/**/*.rb')i
+# end

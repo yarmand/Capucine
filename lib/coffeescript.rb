@@ -22,17 +22,12 @@ module Capucine
         relative_path = relative_path.gsub(/\.coffee$/, '.js')
         relative_path_min = relative_path.gsub(/\.js$/, '.min.js')
 
-        # exit
-
         file_out = File.join settings.working_dir, output, relative_path
         file_out_min = File.join settings.working_dir, output, relative_path_min
 
         relative_coffee_file = file_coffee.gsub(base_in_dir, '')
 
-        opts = settings.config['coffeescript_options']
-        opts = {:bare => false}
-        # opts = {:bare => true}
-
+        opts = {:bare => settings.config['coffeescript_bare']}
         coffee_output_min = ""
 
         error = false
@@ -68,9 +63,7 @@ module Capucine
       unless file
         files = Dir.glob(File.join settings.working_dir, settings.config['coffeescript_output_dir'], '*')
         FileUtils.rm_r files
-
         self.compile_dir settings.config['coffeescript_files_dir'], settings.config['coffeescript_output_dir']
-
 
       else
         self.compile_dir file, settings.config['coffeescript_output_dir']
