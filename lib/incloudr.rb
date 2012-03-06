@@ -19,8 +19,9 @@ module Capucine
     end
 
     def self.pack file
-      self.url(file) if file['type'] == 'url'
-      self.npm(file) if file['type'] == 'npm'
+      type = file['type'] || 'url'
+      self.url(file) if type == 'url'
+      # self.npm(file) if type == 'npm'
     end
 
 

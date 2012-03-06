@@ -33,17 +33,14 @@ incloudr_output_dir: 'js_generated/modules'
 incloudr_libs:
   -
     name: jquery
-    type: url
     source: http://code.jquery.com/jquery.min.js
 
   -
     name: underscore
-    type: url
     source: http://documentcloud.github.com/underscore/underscore-min.js
 
   -
     name: backbone
-    type: url
     source: http://documentcloud.github.com/backbone/backbone-min.js
 
 templates_erb_files_dir: 'templates'
