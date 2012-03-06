@@ -2,6 +2,7 @@ module Capucine
   class Watchr
     require 'compass-sass.rb'
     require 'coffeescript.rb'
+    require 'incloudr.rb'
     require "templates.rb"
 
     def self.watch config_file = nil
@@ -36,6 +37,7 @@ module Capucine
       Capucine::CompassSass.run_once if @config['sass_enable']
       Capucine::Coffee.run_once if @config['coffeescript_enable']
       Capucine::Templates.run_once if @config['templates_enable']
+      Capucine::Incloudr.run_once if @config['incloudr_enable']
     end
   end
 end
