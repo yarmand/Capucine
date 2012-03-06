@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "capucine"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Damian Le Nouaille"]
-  s.date = "2012-03-01"
+  s.date = "2012-03-06"
   s.description = "longer description of your gem"
   s.email = "dam@dln.name"
   s.executables = ["capucine"]
@@ -18,10 +18,14 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
     "README.md",
     "Rakefile",
     "VERSION",
     "bin/capucine",
+    "capucine.gemspec",
     "content/shared/coffeescript/app.coffee",
     "content/shared/css/import/YOUR_OLD_CSS",
     "content/shared/images/favicon/apple-touch-icon-114x114-precomposed.png",
