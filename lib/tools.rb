@@ -86,12 +86,7 @@ module Capucine
 
     def self.clean
       FileUtils.rm File.join(Capucine.settings.working_dir, '.compass.rb')
-    end
-
-    def self.clean_name name
-      require_relative 'extend_string'
-      name.removeaccents
-      name.urlize({:downcase => true, :convert_spaces => true})
+      FileUtils.rm_r File.join(Capucine.settings.working_dir, '.incloudr')
     end
 
   end

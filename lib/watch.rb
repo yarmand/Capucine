@@ -31,8 +31,6 @@ module Capucine
         Capucine.settings.get_config
       end
 
-      puts Capucine.settings.working_dir
-
       @config = Capucine.settings.config
 
       Capucine::CompassSass.run_once if @config['sass_enable']

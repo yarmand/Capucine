@@ -6,7 +6,6 @@ gem 'compass', '0.12.rc.0'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'packr'
-# gem 'incloudr'
 
 
 group :development do

@@ -9,7 +9,7 @@ sass_dir = "<%= config["sass_files_dir"] %>"
 css_dir = "<%= config["sass_output_dir"] %>"
 line_comments = <%= config["sass_line_comments"] %>
 output_style = :<%= config["sass_css_generated_style"] %>
-sass_options = <%= config["sass_options"].to_s.gsub('{', '{:') %>
+sass_options = <%= config["sass_options"] %>
 
 <% if config["compass_config"] and config["compass_config"].length != 0 %>
 <% for k, v in config["compass_config"] %>
