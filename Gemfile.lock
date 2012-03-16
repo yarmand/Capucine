@@ -10,6 +10,8 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    compass-capucine (0.1.0)
+      compass
     execjs (1.3.0)
       multi_json (~> 1.0)
     fssm (0.2.8.1)
@@ -39,7 +41,9 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   coffee-script
   compass (= 0.12.rc.0)
+  compass-capucine
   fssm
   jeweler (~> 1.8.3)
+  json
   packr
   uglifier

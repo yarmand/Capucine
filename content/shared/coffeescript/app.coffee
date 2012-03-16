@@ -1,3 +1,7 @@
-window.AppCoffee =
+AppCoffee =
   initialize: ->
 
+
+# AppCoffee.initialize()
+# OR
+# jQuery AppCoffee.initialize

@@ -3,9 +3,10 @@ module Capucine
     require 'open-uri'
     require 'fileutils'
     require 'json'
-    # require 'uglifier'
     require 'packr'
+
     @@noderoot = 'http://registry.npmjs.org/'
+    @@cdnjsroot = 'https://raw.github.com/cdnjs/cdnjs/master/ajax/libs/'
 
     def self.run_once
       files = Capucine.settings.config['incloudr_libs']
@@ -14,32 +15,56 @@ module Capucine
       FileUtils.rm_r dir if File.exist?(dir)
       FileUtils.mkdir_p dir
 
+      @file = nil
       files.each {|file| self.pack file}
       puts "[incloudr] - Packaged"
     end
 
     def self.pack file
-      type = file['type'] || 'url'
-      self.url(file) if type == 'url'
+      @file = file
+
+      if @file.kind_of? String # CDNJS
+        @file = {}
+        @file['name'] = file
+        @file['type'] = 'cdnjs'
+      else
+        @file['type'] = 'npm' unless @file['source'] # NPM
+      end
+
+      @file['type'] = @file['type'] || 'url' # URL
+
+      @output = File.join(Capucine.settings.working_dir, Capucine.settings.config['incloudr_output_dir'], @file['name'].gsub(/$/, '.js'))
+      @output_min = File.join(Capucine.settings.working_dir, Capucine.settings.config['incloudr_output_dir'], @file['name'].gsub(/$/, '.min.js'))
+
+      self.cdnjs if @file['type'] == 'cdnjs'
+      self.url if @file['type'] == 'url'
       # self.npm(file) if type == 'npm'
     end
 
 
-    def self.url file
-      output = File.join(Capucine.settings.working_dir, Capucine.settings.config['incloudr_output_dir'], file['name'].gsub(/$/, '.js'))
-      output_min = File.join(Capucine.settings.working_dir, Capucine.settings.config['incloudr_output_dir'], file['name'].gsub(/$/, '.min.js'))
-
-      content = open(file['source']).read
+    def self.url raw_content = nil
+      content = raw_content || open(@file['source']).read
       content_min = ""
       content_min << Packr.pack(content)
 
-      f1 = File.open(output, 'w+')
+      f1 = File.open(@output, 'w+')
       f1.write(content)
       f1.close
 
-      f2 = File.open(output_min, 'w+')
+      f2 = File.open(@output_min, 'w+')
       f2.write(content_min)
       f2.close
+    end
+
+
+    def self.cdnjs
+      cdnjs_url_pkg = "#{@@cdnjsroot}#{@file['name']}/package.json"
+      content = JSON.parse open(cdnjs_url_pkg).read
+      version = @file['version'] || content['version']
+      filename = content['filename']
+      raw_file_url = "#{@@cdnjsroot}#{@file['name']}/#{version}/#{filename}"
+      raw_content = open(raw_file_url).read
+      self.url raw_content
     end
 
     def self.npm file
@@ -50,55 +75,9 @@ module Capucine
 
       # tarball = open(tarball_url).read
 
-      p version
+      # p version
 
     end
-
-
-    # def self.pack files
-    #   s = Capucine.settings
-    #   out = File.join s.working_dir, s.config['incloudr_output_dir']
-
-    #   output_file = File.join out, base
-    #   output_file_min = File.join out, base.gsub('.js', '.min.js')
-
-    #   FileUtils.mkdir_p out if not File.exist?(out)
-
-    #   content = ""
-
-    #   files.each do |js_file|
-    #     extended = File.join s.working_dir, js_file
-    #     content << File.read(extended) if File.exist?(extended)
-    #   end
-
-    #   f = File.open(output_file, 'w')
-    #   f.write('')
-    #   f.write(content)
-    #   f.close
-    # end
-
-    # def self.lib_root
-    #   return "http://dln.name/"
-    # end
-
-    # def self.compress file
-    #   return if not File.exist?(file)
-    #   file_name = file.gsub '.js', ''
-    #   output_file = "#{file_name}.js"
-    #   output_file_min = "#{file_name}.min.js"
-    # end
-
-    # def self.get_lib lib
-    #   lib_name = lib[0]
-    #   lib_version = lib[1]
-    #   lib_url = "#{self.lib_root}#{lib_name}/#{lib_version}"
-    #   lib_url_min = "#{lib_url}/min"
-    #   lib_url_cdn = open(lib_url).read
-    #   lib_url_cdn_min = open(lib_url_min).read
-    #   lib_content = open(lib_url_cdn).read
-    #   lib_content_min = open(lib_url_cdn_min).read
-    #   total = [lib_content, lib_content_min]
-    # end
 
   end
 end

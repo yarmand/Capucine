@@ -1,49 +1,31 @@
-sass_enable: true
-coffeescript_enable: true
-incloudr_enable: true
-templates_enable: true
+sass: false
+coffeescript: false
+incloudr: false
+templates: false
 
 # ----------------------------------------
-sass_images_dir: 'images'
-sass_files_dir: 'sass'
-sass_output_dir: 'css_generated'
+sass_images_dir: public/images
+sass_files_dir: sass
+sass_output_dir: public/css_generated
 sass_line_comments: false
-sass_css_generated_style: 'expanded' # compact | expanded | compressed
+sass_css_generated_style: expanded # compact | expanded | compressed
 sass_options: '{:cache => false}'
-# compass_config:
-#   '': ''
-compass_plugins:
-  sass-capucine:
-  # gem-name: plugin-name
-  # OR simply
-  # plugin-name:      if gem-anem = plugin-name
 
-  # twitter-bootstrap: twitter_bootstrap
+compass_config: {}
+compass_plugins:
+  - compass-capucine
 
 sass_import_css: false
-sass_import_formats: 'css to sass'
-sass_import_css_dir: 'css/import'
-sass_import_output_dir: 'sass/converted'
+sass_import_formats: css to sass
+sass_import_css_dir: public/css/import
+sass_import_output_dir: sass/converted
 
 coffeescript_bare: false
-coffeescript_files_dir: 'coffeescript'
-coffeescript_output_dir: 'js_generated'
+coffeescript_files_dir: coffeescript
+coffeescript_output_dir: public/js_generated
 
-incloudr_output_dir: 'js_generated/modules'
-incloudr_libs:
-  -
-    name: jquery
-    source: http://code.jquery.com/jquery.min.js
-
-  -
-    name: underscore
-    source: http://documentcloud.github.com/underscore/underscore-min.js
-
-  -
-    name: backbone
-    source: http://documentcloud.github.com/backbone/backbone-min.js
-
-templates_erb_files_dir: 'templates'
+incloudr_output_dir: public/js_generated/modules
+incloudr_libs: []
 
 # DOCUMENTATION :
 # http:// capucine.dln.name

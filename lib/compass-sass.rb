@@ -23,17 +23,18 @@ module Capucine
       plugins = settings.config['compass_plugins']
 
       if plugins.size > 0
-        plugins.each do |key, value|
-          settings.config['compass_plugins_list'].push key
-
-          if value and value.length > 0
-            plugins_gems.push value
+        plugins.each do |p|
+          p = p.split('|')
+          settings.config['compass_plugins_list'].push p[0]
+          if p[1]
+            plugins_gems.push p[1]
           else
-            plugins_gems.push key
+            plugins_gems.push p[0]
           end
 
         end
       end
+
       config_ = settings.config
       result = Capucine::Tools.render_template template_file, config_
 

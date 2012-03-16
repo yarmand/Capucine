@@ -8,7 +8,6 @@ module Capucine
     require "compass-sass.rb"
     require "coffeescript.rb"
     require "incloudr.rb"
-    require "templates.rb"
 
     def self.new_project name = nil
 
@@ -27,24 +26,14 @@ module Capucine
     end
 
     def self.init all = nil
-      files = []
-      content_files = []
-
       self.archive_file File.join Capucine.settings.working_dir, 'capucine.yaml'
 
       if all
-        content_files = Dir.glob("#{Capucine.settings.gem_content_dir}/shared/**")
-        content_files.each do |file|
-          relative_path = file.gsub(File.join(Capucine.settings.gem_content_dir, 'shared', '/'),'')
-          destination = File.join Capucine.settings.working_dir, relative_path
-          self.archive_file destination
-        end
+        files = Dir.glob File.join(Capucine.settings.gem_content_dir, 'shared', '**')
+        self.archive_file Capucine.settings.working_dir
+        FileUtils.cp_r files, Capucine.settings.working_dir
       end
 
-      files << File.join(Capucine.settings.gem_content_dir, 'templates', 'capucine.yaml')
-      content_files.each {|file| files << file}
-
-      FileUtils.cp_r files, Capucine.settings.working_dir
       Capucine::Watchr.compile if all
       Capucine.settings.reset_working_dir
     end

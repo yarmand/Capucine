@@ -1,6 +1,0 @@
-window.AppJS = {
-  initialize: function() {
-
-
-  }
-}

@@ -1,12 +1,12 @@
 source "http://rubygems.org"
 
-
 gem 'fssm'
 gem 'compass', '0.12.rc.0'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'packr'
-
+gem 'json'
+gem 'compass-capucine'
 
 group :development do
   # gem "shoulda", ">= 0"
