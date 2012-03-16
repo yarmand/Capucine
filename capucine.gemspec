@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "capucine"
-  s.version = "0.1.3"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Damian Le Nouaille"]
-  s.date = "2012-03-11"
+  s.date = "2012-03-16"
   s.description = "longer description of your gem"
   s.email = "dam@dln.name"
   s.executables = ["capucine"]
@@ -26,19 +26,19 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/capucine",
     "capucine.gemspec",
+    "content/shared/capucine.yaml",
     "content/shared/coffeescript/app.coffee",
-    "content/shared/css/import/YOUR_OLD_CSS",
-    "content/shared/images/favicon/apple-touch-icon-114x114-precomposed.png",
-    "content/shared/images/favicon/apple-touch-icon-57x57-precomposed.png",
-    "content/shared/images/favicon/apple-touch-icon-72x72-precomposed.png",
-    "content/shared/images/favicon/apple-touch-icon-precomposed.png",
-    "content/shared/images/favicon/favicon.png",
     "content/shared/index.html",
-    "content/shared/js/app.js",
-    "content/shared/sass/_main.sass",
-    "content/shared/sass/_responsive.sass",
-    "content/shared/sass/screen.sass",
-    "content/templates/capucine-user.yaml",
+    "content/shared/public/css/import/YOUR_OLD_CSS",
+    "content/shared/public/images/favicon/apple-touch-icon-114x114-precomposed.png",
+    "content/shared/public/images/favicon/apple-touch-icon-57x57-precomposed.png",
+    "content/shared/public/images/favicon/apple-touch-icon-72x72-precomposed.png",
+    "content/shared/public/images/favicon/apple-touch-icon-precomposed.png",
+    "content/shared/public/images/favicon/favicon.png",
+    "content/shared/public/js/app.js",
+    "content/shared/sass/_main.scss",
+    "content/shared/sass/_responsive.scss",
+    "content/shared/sass/screen.scss",
     "content/templates/capucine.yaml",
     "content/templates/cmd_help.erb",
     "content/templates/compass_config.erb",
@@ -48,7 +48,6 @@ Gem::Specification.new do |s|
     "lib/compass-sass.rb",
     "lib/incloudr.rb",
     "lib/settings.rb",
-    "lib/templates.rb",
     "lib/tools.rb",
     "lib/watch.rb"
   ]
@@ -68,6 +67,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<uglifier>, [">= 0"])
       s.add_runtime_dependency(%q<packr>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<compass-capucine>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
     else
@@ -77,6 +77,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<uglifier>, [">= 0"])
       s.add_dependency(%q<packr>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<compass-capucine>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     end
@@ -87,6 +88,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<uglifier>, [">= 0"])
     s.add_dependency(%q<packr>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<compass-capucine>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
   end
