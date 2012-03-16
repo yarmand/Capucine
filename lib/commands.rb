@@ -21,6 +21,8 @@ module Capucine
         Capucine::Watchr.watch second_arg
       elsif first_arg == 'clean'
         Capucine::Tools.clean
+      elsif first_arg == 'list'
+        Capucine::Incloudr.list
       elsif first_arg == 'update' or first_arg == 'u'
         system('gem install capucine')
       else

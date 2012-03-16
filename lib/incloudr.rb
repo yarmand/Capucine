@@ -7,6 +7,7 @@ module Capucine
 
     @@noderoot = 'http://registry.npmjs.org/'
     @@cdnjsroot = 'https://raw.github.com/cdnjs/cdnjs/master/ajax/libs/'
+    @@cdnjs = 'http://www.cdnjs.com/packages.json'
 
     def self.run_once
       files = Capucine.settings.config['incloudr_libs']
@@ -77,6 +78,12 @@ module Capucine
 
       # p version
 
+    end
+
+    def self.list
+      content = JSON.parse open(@@cdnjs).read
+      packages = content['packages']
+      packages.each {|p| puts "#{p['name']}\n"}
     end
 
   end
