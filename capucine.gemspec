@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "capucine"
-  s.version = "0.1.6"
+  s.version = "0.1.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Damian Le Nouaille"]
-  s.date = "2012-03-16"
+  s.date = "2012-03-28"
   s.description = "longer description of your gem"
   s.email = "dam@dln.name"
   s.executables = ["capucine"]
@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://capucine.dln.name"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.21"
   s.summary = "Tools for frontend developers. Use CoffeeScript and Compass everywhere."
 
   if s.respond_to? :specification_version then
